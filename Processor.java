@@ -11,4 +11,10 @@ public class Processor {
     public static String dump(){
         return "dump here";
     }
+
+    public void setMemory(Memory memory) {
+    }
+
+    public void setPC(int i) {
+    }
 }
