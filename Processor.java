@@ -4,11 +4,11 @@ public class Processor {
     int IR;
     int[] reg;
 
-    public static Boolean step(){
+    public Boolean step(){
         return true;
     }
 
-    public static String dump(){
+    public String dump(){
         return "dump here";
     }
 
@@ -16,5 +16,6 @@ public class Processor {
     }
 
     public void setPC(int i) {
+        int PC = i;
     }
 }
