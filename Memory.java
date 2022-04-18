@@ -3,18 +3,18 @@ public class Memory {
     int[] cell;
     int cap = 256;
 
-    public Memory(int cap2) {
+    public Memory(int cap) {
     }
 
-    public static Integer read(int addr) {
+    public Integer read(int addr) {
         return addr;
     }
 
-    public static Integer write(int addr, int data) {
+    public Integer write(int addr, int data) {
         return data;
     }
 
-    public static String dump() {
+    public String dump() {
         return "dump here";
     }
 }
