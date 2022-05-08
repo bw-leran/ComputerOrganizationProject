@@ -1,0 +1,29 @@
+// cell[21] = cell[20]!
+
+// init registers:
+loadc 0   // reg[0] = 0x14
+14
+loadc 1   // reg[1] = 1
+1
+load 2 0  // reg[2] = cell[0x14] = # interations to do
+loadc 3   // reg[3] = result = 1
+1
+loadc 4   // reg[4] = goto target = 9
+9
+
+// instruction #9:
+mul 3 2 // reg[3] = reg[2] * reg[3]
+sub 2 1  // reg[2] = reg[2] - 1
+if 2 4   // if reg[2] > 0 goto 9
+
+// store result
+add 0 1  // reg[0] = 0x15
+store 0 3  // cell[0x15] = reg[3]
+halt
+0
+0
+0
+0
+0
+5
+0
