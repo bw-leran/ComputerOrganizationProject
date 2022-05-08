@@ -47,10 +47,11 @@ public class Console {
 	public void load(String fName) {
 		try {
 			File f = new File(fName);
-			Scanner scan  = new Scanner(f);
-			int address = 0;
-			while(scan.hasNext()) {
-				memory.write(address++, scan.nextInt(16));
+			try (Scanner scan = new Scanner(f)) {
+				int address = 0;
+				while(scan.hasNext()) {
+					memory.write(address++, scan.nextInt(16));
+				}
 			}
 			cpu.setPC(0);
 		} catch(Exception e) {
