@@ -1,4 +1,4 @@
-// cell[21] = 3 * cell[20] + 2 * cell[21] + cell[22]
+// cell[21] = cell[100] + cell[100]>>1 + cell[100]>>2 + ... + 1
 
 // init registers:
 loadc 0   // reg[0] = 0x14
