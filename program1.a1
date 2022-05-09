@@ -1,3 +1,5 @@
+// cell[23] = cell[20] + cell[21] + cell[22]
+
 loadc 0
 0x14
 loadc 1

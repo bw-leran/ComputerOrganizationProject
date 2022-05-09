@@ -1,10 +1,10 @@
-// cell[21] = 2^cell[20] // hint: use left shift
+// cell[21] = 2^cell[100] // hint: use left shift
 
-loadc 0   // reg[0] = 0x14
-14
+loadc 0   // reg[0] = 0x64
+64
 loadc 1   // reg[1] = 1
 1
-load 2 0  // reg[2] = cell[0x14] = # interations to do
+load 2 0  // reg[2] = cell[0x64] = # interations to do
 loadc 3   // reg[3] = result = 1
 1
 loadc 4   // reg[4] = goto target = 9
