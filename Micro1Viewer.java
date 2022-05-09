@@ -87,7 +87,7 @@ public class Micro1Viewer {
         panel.add(title);
 
                 
-        JTextArea registers_textfield = new JTextArea("registers go here!");
+        JTextArea registers_textfield = new JTextArea();
         registers_textfield.setBounds(100, 500, 700, 400);
         Border border = BorderFactory.createLineBorder(null);
         registers_textfield.setBorder(BorderFactory.createCompoundBorder(border,
