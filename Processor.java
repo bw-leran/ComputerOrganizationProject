@@ -1,3 +1,6 @@
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
 public class Processor {
 
     private int numRegs = 8;
@@ -99,6 +102,22 @@ public class Processor {
         }
         System.out.println("PC = " + Integer.toHexString(PC));
         System.out.println("IR = " + Integer.toHexString(IR));
+    }
+
+    public void dumpToJField(JTextArea textfield) {
+
+        String reg_0 = "reg[0] = " + String.valueOf(reg[0]) + "\n";
+        String reg_1 = "reg[1] = " + String.valueOf(reg[1]) + "\n";
+        String reg_2 = "reg[2] = " + String.valueOf(reg[2]) + "\n";
+        String reg_3 = "reg[3] = " + String.valueOf(reg[3]) + "\n";
+        String reg_4 = "reg[4] = " + String.valueOf(reg[4]) + "\n";
+        String reg_5 = "reg[5] = " + String.valueOf(reg[5]) + "\n";
+        String reg_6 = "reg[6] = " + String.valueOf(reg[6]) + "\n";
+        String reg_7 = "reg[7] = " + String.valueOf(reg[07]) + "\n";
+        String pc = "PC = " + String.valueOf(PC) + "\n";
+        String ir = "IR = " + String.valueOf(IR) + "\n";
+
+        textfield.setText("Registers:\n"+reg_0+reg_1+reg_2+reg_3+reg_4+reg_5+reg_6+reg_7+pc+ir);
     }
 
 }

@@ -1,6 +1,6 @@
 import java.util.*;
 import java.io.*;
-
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
@@ -10,7 +10,10 @@ import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
 public class Micro1Viewer {
@@ -67,6 +70,8 @@ public class Micro1Viewer {
     
     public static void main(String[] args) {
 
+        Micro1Viewer micro1Viewer = new Micro1Viewer();
+
         JPanel panel = new JPanel();
         JFrame frame = new JFrame();
         frame.setSize(1000, 1000);
@@ -75,16 +80,19 @@ public class Micro1Viewer {
         frame.add(panel);
 
         panel.setLayout(null);
+        panel.setBackground(Color.blue);
 
         JLabel title = new JLabel("Micro-1 Viewer (Anastasia, Brandon, and Declan)");
         title.setBounds(350, 0, 1000, 100);
         panel.add(title);
 
                 
-        JTextField registers_textfield = new JTextField("registers go here!");
+        JTextArea registers_textfield = new JTextArea("registers go here!");
         registers_textfield.setBounds(100, 500, 700, 400);
+        Border border = BorderFactory.createLineBorder(null);
+        registers_textfield.setBorder(BorderFactory.createCompoundBorder(border,
+            BorderFactory.createEmptyBorder(10, 10, 10, 10)));
         panel.add(registers_textfield);
-        // currently cant do multiple lines
 
         JTextField load_textfield = new JTextField();
         load_textfield.setBounds(300, 150, 500, 50);
@@ -119,31 +127,27 @@ public class Micro1Viewer {
         registers_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cpu.dump();
+                cpu.dumpToJField(registers_textfield);
             }
         });
         panel.add(registers_button);
 
-        // produce success or error message to jtextfield
         JButton step_button = new JButton("Step");
         step_button.setBounds(500, 300, 100, 40);
         step_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int num = 1;
-					boolean halt = false;
-					for(int i = 0; i < num && !halt; i++) {
-						if (!halt) halt = cpu.step();
-						if (halt) {
-							System.out.println("program terminated");
-							break;
-                        }
+				boolean halt = false;
+				for(int i = 0; i < num && !halt; i++) {
+					if (!halt) halt = cpu.step();
+					if (halt) {
+						System.out.println("program terminated");
+						break;
                     }
-
-        panel.add(step_button);
-        // step button not working very well
-
+                }
             }
         });
+        panel.add(step_button);
     }
 }
