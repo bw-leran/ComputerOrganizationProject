@@ -12,6 +12,7 @@ loadc 4   // reg[4] = goto target = 9
 9
 
 // instruction #9:
+
 mul 3 2 // reg[3] = reg[2] * reg[3]
 sub 2 1  // reg[2] = reg[2] - 1
 if 2 4   // if reg[2] > 0 goto 9
