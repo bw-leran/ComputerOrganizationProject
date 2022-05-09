@@ -27,19 +27,30 @@ public class Micro1Viewer {
         title.setBounds(350, 0, 1000, 100);
         panel.add(title);
 
+                
+        JTextField registers_textfield = new JTextField("registers go here!");
+        registers_textfield.setBounds(100, 500, 700, 400);
+        panel.add(registers_textfield);
+        // currently cant do multiple lines
+
+        JTextField load_textfield = new JTextField();
+        load_textfield.setBounds(300, 150, 500, 50);
+        panel.add(load_textfield);
+
+
         JButton load_button = new JButton("Load");
         load_button.setBounds(100, 150, 100, 40);
         load_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.print("pressed");
+                System.out.print(load_textfield.getText());
             }
         });
         panel.add(load_button);
 
         // this one should dump to command console
         JButton memory_button = new JButton("Memory");
-        memory_button.setBounds(300, 150, 100, 40);
+        memory_button.setBounds(100, 300, 100, 40);
         memory_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -50,7 +61,7 @@ public class Micro1Viewer {
 
         // this one should dump to jtextfield
         JButton registers_button = new JButton("Registers");
-        registers_button.setBounds(500, 150, 100, 40);
+        registers_button.setBounds(300, 300, 100, 40);
         registers_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -61,7 +72,7 @@ public class Micro1Viewer {
 
         // produce success or error message to jtextfield
         JButton step_button = new JButton("Step");
-        step_button.setBounds(700, 150, 100, 40);
+        step_button.setBounds(500, 300, 100, 40);
         step_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -69,12 +80,6 @@ public class Micro1Viewer {
             }
         });
         panel.add(step_button);
-        
-        JTextField registers_textfield = new JTextField("registers go here!");
-        registers_textfield.setBounds(100, 300, 700, 400);
-        panel.add(registers_textfield);
-        // currently cant do multiple lines
-
 
     }
 
