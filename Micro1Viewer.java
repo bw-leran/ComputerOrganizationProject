@@ -1,3 +1,6 @@
+import java.util.*;
+import java.io.*;
+
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
@@ -11,6 +14,56 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 public class Micro1Viewer {
+
+    /**
+	  Main memory of the simulated computer
+	*/
+	private static Memory memory;
+	/**
+	  Processor of the simulated computer
+	*/
+	private static Processor cpu;
+
+    /**
+       Constructs a memory with specified number of cells,
+       and constructs an associated processor.
+
+       @param cap  the sepcified amount of memory
+    */
+	public Micro1Viewer(int cap) {
+		memory = new Memory(cap);
+		cpu = new Processor();
+		cpu.setMemory(memory);
+	}
+
+    /**
+      Constructs a processor and a memory with 256 cells
+    */
+	public Micro1Viewer() {
+		this(256);
+	}
+
+    
+    /**
+      Loads hexadecimal numbers stored in fName into
+      memory starting at address 0. Resets PC to 0.
+
+      @param fName the name of a file containing hex numbers
+    */
+	public static void load(String fName) {
+		try {
+			File f = new File(fName);
+			try (Scanner scan = new Scanner(f)) {
+				int address = 0;
+				while(scan.hasNext()) {
+					memory.write(address++, scan.nextInt(16));
+				}
+			}
+			cpu.setPC(0);
+		} catch(Exception e) {
+			System.out.println(e);
+		}
+    }
     
     public static void main(String[] args) {
 
@@ -43,7 +96,8 @@ public class Micro1Viewer {
         load_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.print(load_textfield.getText());
+                load(load_textfield.getText());
+                System.out.println("done");
             }
         });
         panel.add(load_button);
@@ -54,7 +108,7 @@ public class Micro1Viewer {
         memory_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.print("pressed");
+                memory.dump();
             }
         });
         panel.add(memory_button);
@@ -65,7 +119,7 @@ public class Micro1Viewer {
         registers_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.print("pressed");
+                cpu.dump();
             }
         });
         panel.add(registers_button);
@@ -76,11 +130,20 @@ public class Micro1Viewer {
         step_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.print("pressed");
+                int num = 1;
+					boolean halt = false;
+					for(int i = 0; i < num && !halt; i++) {
+						if (!halt) halt = cpu.step();
+						if (halt) {
+							System.out.println("program terminated");
+							break;
+                        }
+                    }
+
+        panel.add(step_button);
+        // step button not working very well
+
             }
         });
-        panel.add(step_button);
-
     }
-
 }
