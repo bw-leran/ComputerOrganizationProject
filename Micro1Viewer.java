@@ -3,6 +3,7 @@ import java.io.*;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.nio.BufferOverflowException;
 import java.awt.event.ActionEvent;
@@ -83,7 +84,8 @@ public class Micro1Viewer {
         panel.setBackground(Color.blue);
 
         JLabel title = new JLabel("Micro-1 Viewer (Anastasia, Brandon, and Declan)");
-        title.setBounds(350, 0, 1000, 100);
+        title.setBounds(100, 0, 1000, 100);
+        title.setFont(new Font("Verdana", Font.PLAIN, 30));
         panel.add(title);
 
                 
